@@ -6,6 +6,25 @@ A blazing-fast, fully local Kahoot botting tool with a real-time terminal dashbo
 
 ---
 
+## Table of Contents
+
+1. [Features](#features)
+2. [Quick Start](#quick-start)
+3. [Hardware Requirements](#hardware-requirements)
+4. [Software Prerequisites](#software-prerequisites)
+5. [Models](#models)
+6. [Building llama.cpp](#building-llamacpp)
+7. [Running the Vision Server](#running-the-vision-server)
+8. [Testing the Vision Server](#testing-the-vision-server)
+9. [Usage](#usage)
+10. [Architecture](#architecture)
+11. [Performance Reference](#performance-reference)
+12. [Troubleshooting](#troubleshooting)
+13. [Legal](#legal)
+14. [Credits](#credits)
+
+---
+
 ## Features
 
 - **Real-time TUI dashboard** — live bot grid, question panel, event log
@@ -23,21 +42,34 @@ A blazing-fast, fully local Kahoot botting tool with a real-time terminal dashbo
 ## Quick Start
 
 ```bash
-# 1. Install Python dependencies
+# 1. Clone the repository
+git clone https://github.com/yourname/KahootBots.git
+cd KahootBots
+
+# 2. Install Python dependencies
 python -m pip install -r requirements.txt
 python -m playwright install chromium
 
-# 2. Pull the text model into Ollama
+# 3. Pull the text model into Ollama
 ollama pull batiai/gemma4-e4b:q4
 
-# 3. Download vision GGUF files into ./models (see Models section)
+# 4. Download the vision GGUF files into ./models (Of course you can use your own models of choice, This a good light model, if you want better results seek looking into "Qwen_Qwen3.5-4B-Q4_K_M-vendor-sampling"
+mkdir -p models && cd models
+wget https://huggingface.co/batiai/Gemma-4-E4B-it-GGUF/resolve/main/google-gemma-4-E4B-it-Q4_K_M.gguf
+wget https://huggingface.co/batiai/Gemma-4-E4B-it-GGUF/resolve/main/mmproj-BF16.gguf
+cd ..
 
-# 4. Build llama.cpp with CUDA (see Building llama.cpp)
+# 5. Build llama.cpp with GPU support (see Building llama.cpp for details)
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES="89"
+cmake --build build --config Release -j$(nproc)
+cd ..
 
-# 5. Start the vision server
+# 6. Start the vision server
 ./start-server.sh
 
-# 6. Run the bot
+# 7. Run the bot in a new terminal
 python main.py
 ```
 
