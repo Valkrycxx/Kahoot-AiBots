@@ -54,7 +54,7 @@ python -m playwright install chromium
 ollama pull batiai/gemma4-e4b:q4
 
 # 4. Download the vision GGUF files into ./models (Of course you can use your own models of choice, 
-This a good light model, if you want better results seek looking into "Qwen_Qwen3.5-4B-Q4_K_M-vendor-sampling"
+# This a good light model, if you want better results seek looking into "Qwen_Qwen3.5-4B-Q4_K_M-vendor-sampling"
 mkdir -p models && cd models
 wget https://huggingface.co/batiai/Gemma-4-E4B-it-GGUF/resolve/main/google-gemma-4-E4B-it-Q4_K_M.gguf
 wget https://huggingface.co/batiai/Gemma-4-E4B-it-GGUF/resolve/main/mmproj-BF16.gguf
