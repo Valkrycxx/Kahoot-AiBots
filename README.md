@@ -43,7 +43,7 @@ A blazing-fast, fully local Kahoot botting tool with a real-time terminal dashbo
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourname/KahootBots.git
+git clone https://github.com/Valkrycxx/Kahoot-AiBots/
 cd KahootBots
 
 # 2. Install Python dependencies
